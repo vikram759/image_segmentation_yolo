@@ -28,14 +28,12 @@ pip install -r requirements.txt
 - Annotate your images using any compatible labeling tool.
 - Convert labels to YOLOv8 text format for training.
 - Train the YOLOv8 model with:
-yolo task=segment mode=train model=yolov8n.pt data=<dataset-config>.yaml epochs=50
 
-- Evaluate the model:
-yolo task=segment mode=val model=<trained-model>.pt data=<dataset-config>.yaml
+
+- Evaluate the model:=
 
 
 - Test predictions on new images and utilize evaluation metrics:
-yolo task=segment mode=predict model=<trained-model>.pt source=<test-images-folder>
 
 
 ## Evaluation Metrics
