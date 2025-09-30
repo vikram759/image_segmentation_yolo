@@ -1,99 +1,65 @@
-Image Segmentation using YOLOv8
+# Image Segmentation using YOLOv8
 
-This project demonstrates custom image segmentation and object detection using YOLOv8, including dataset preparation, model training, fine-tuning, and evaluation.
+## Project Overview
+This project focuses on image segmentation using the YOLOv8 deep learning model. It involves preparing and annotating a custom image dataset, training and fine-tuning the model, and evaluating its performance on a test set.
 
-📌 Project Overview
+## Key Features
+- Preparation of a custom dataset annotated and converted into YOLOv8-compatible text format.
+- Training and fine-tuning a YOLOv8 model to achieve high accuracy.
+- Evaluating the model using metrics such as mean Average Precision (mAP), precision, recall, and F1-score.
+- Validating predictions and the end-to-end object detection pipeline on test images.
 
-Prepared and annotated a custom dataset, converting labels into YOLOv8-compatible text format.
+## Results
+- Achieved a mean Average Precision (mAP) of 99.0% on the validation dataset.
+- Performance metrics confirm the robustness and accuracy of the trained model.
 
-Trained and fine-tuned a YOLOv8 model for segmentation and detection.
-
-Achieved 99.0% mAP on the validation set.
-
-Evaluated the trained model using precision, recall, F1-score, and mAP on test images.
-
-Built an end-to-end pipeline: data preparation → model training → evaluation → prediction visualization.
-
-📂 Dataset Preparation
-
-Images were annotated using [LabelImg / Roboflow / CVAT] (replace with your tool).
-
-Labels were exported and converted into YOLOv8 .txt format:
-
-<class_id> <x_center> <y_center> <width> <height>
+## Installation
+1. Clone the repository:
+git clone <repository-url>
 
 
-Normalized values in the range [0,1].
-
-Dataset was split into:
-
-train/
-
-val/
-
-test/
-
-⚙️ Training the Model
-
-Install requirements:
-
-pip install ultralytics
+2. Install required dependencies (Python 3.8+ recommended):
+pip install -r requirements.txt
 
 
-Train the YOLOv8 model:
+(Includes Ultralytics YOLOv8, OpenCV, and other necessary libraries)
 
-yolo detect train data=data.yaml model=yolov8n.pt epochs=100 imgsz=640
+## Usage
+- Annotate your images using any compatible labeling tool.
+- Convert labels to YOLOv8 text format for training.
+- Train the YOLOv8 model with:
+yolo task=segment mode=train model=yolov8n.pt data=<dataset-config>.yaml epochs=50
 
-
-Fine-tuned hyperparameters for improved accuracy.
-
-📊 Evaluation Metrics
-
-mAP (mean Average Precision): 99.0% (validation set)
-
-Precision
-
-Recall
-
-F1-Score
-
-Evaluation run:
-
-yolo detect val model=runs/detect/train/weights/best.pt data=data.yaml
-
-🔍 Predictions on Test Images
-
-Run inference on test images:
-
-yolo detect predict model=runs/detect/train/weights/best.pt source=test/
+- Evaluate the model:
+yolo task=segment mode=val model=<trained-model>.pt data=<dataset-config>.yaml
 
 
-Predicted results are saved in runs/detect/predict/.
+- Test predictions on new images and utilize evaluation metrics:
+yolo task=segment mode=predict model=<trained-model>.pt source=<test-images-folder>
 
-📈 Results
 
-High performance on validation and test datasets.
+## Evaluation Metrics
+- **mAP (mean Average Precision)**
+- **Precision**
+- **Recall**
+- **F1-score**
 
-Robust segmentation and detection pipeline validated end-to-end.
+These metrics help ensure the model's predictions are both precise and comprehensive.
 
-🚀 Future Work
+## Folder Structure
+/dataset # Annotated images and label files
+/scripts # Scripts for training, evaluation, and testing
+/models # Saved trained weights
+/results # Evaluation reports and example outputs
 
-Deploy the model as an API for real-time inference.
 
-Experiment with larger YOLOv8 variants (YOLOv8m, YOLOv8l).
 
-Extend dataset for multi-class segmentation tasks.
+## Contributing
+Contributions and suggestions are welcome. Please raise an issue or submit a pull request to improve the project.
 
-🛠️ Tech Stack
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Python
+---
 
-YOLOv8 (Ultralytics)
-
-OpenCV / Matplotlib (for visualization)
-
-Annotation Tool: [LabelImg / Roboflow / CVAT]
-
-📧 Contact
-
-For questions or collaborations, feel free to reach out!
+*Developed in September 2025 as part of an advanced computer vision project.*
